@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Show Text</title>
+  <style>
+    .text-area{
+      background-color: white;
+      width: 50%;
+      height: 150px;
+      color: green;
+      border-radius: 8px;
+      border: 2px solid purple;
+      box-shadow: 10px 5px rgba(20, 3, 15, 0.2);
+    }
+      .search{
+        margin: 10px;
+        border: 2px solid black;
+        padding: 15px;
+        border-radius: 6px;
+        font-family: monospace;
+      }
+      button{
+        background-color: blue;
+        color: white;
+        padding: 7px;
+        border-radius: 5px;
+        cursor: pointer;
+        width: 15%;
+        border: none;
+        font-weight: 600;
+      }
+      button:hover{
+        background-color: green;
+      }
+  </style>
+</head>
+<body>
+  <input type="text" id="display-text" class="search" placeholder="Search Anything" onkeyup="showText(this.value)">
+  <button id="searchButton">Search</button>
+  <p id="typed-text" class="text-area"></p>
+
+  <script>
+    const inputElement = document.getElementById('display-text');
+    const textShown = document.getElementById('typed-text');
+    
+    function showText(words){
+        const display = inputElement.value;
+        if(display){
+          textShown.style.display = 'block';
+          textShown.textContent = words;
+        }else{
+            textShown.style.display = 'none';
+        }
+    }
+   
+     const button = document.getElementById('searchButton');
+     button.addEventListener('click', function() {
+    const query = document.getElementById('display-text').value;
+
+    if (query.trim() !== '') {
+        const googleSearchUrl = `https://www.google.com/search?q=${encodeURIComponent(query)}`;
+        window.location.href = googleSearchUrl;
+    } else {
+        alert("Please enter a search query!"); // Optional: give feedback for empty searches
+    }
+});
+
+  </script>
+</body>
+</html>
